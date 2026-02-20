@@ -1,33 +1,5 @@
-// Questions array
-const questions = [
-  {
-    question: "What is the capital of France?",
-    answers: [
-      { text: "Paris", correct: true },
-      { text: "London", correct: false },
-      { text: "Rome", correct: false },
-      { text: "Berlin", correct: false },
-    ]
-  },
-  {
-    question: "Which language runs in a web browser?",
-    answers: [
-      { text: "JavaScript", correct: true },
-      { text: "Python", correct: false },
-      { text: "C++", correct: false },
-      { text: "Java", correct: false },
-    ]
-  },
-  {
-    question: "Who painted the Mona Lisa?",
-    answers: [
-      { text: "Leonardo da Vinci", correct: true },
-      { text: "Vincent Van Gogh", correct: false },
-      { text: "Pablo Picasso", correct: false },
-      { text: "Claude Monet", correct: false },
-    ]
-  }
-];
+// Questions will be fetched from backend
+let questions = [];
 
 // Select elements
 const questionElement = document.getElementById('question');
@@ -37,11 +9,32 @@ const scoreElement = document.getElementById('score');
 
 let currentQuestionIndex = 0;
 let score = 0;
+let userAnswers = [];
+
+// Fetch questions from backend
+async function fetchQuestions() {
+  try {
+    const response = await fetch('http://localhost:3000/api/questions');
+    if (!response.ok) {
+      throw new Error('Failed to fetch questions');
+    }
+    questions = await response.json();
+    return true;
+  } catch (error) {
+    console.error('Error fetching questions:', error);
+    questionElement.innerText = 'Error loading questions. Please make sure the backend server is running.';
+    return false;
+  }
+}
 
 // Start the quiz
-function startQuiz() {
+async function startQuiz() {
+  const questionsLoaded = await fetchQuestions();
+  if (!questionsLoaded) return;
+  
   currentQuestionIndex = 0;
   score = 0;
+  userAnswers = [];
   scoreElement.innerText = '';
   nextButton.style.display = 'none';
   showQuestion();
@@ -57,10 +50,7 @@ function showQuestion() {
     const button = document.createElement('button');
     button.innerText = answer.text;
     button.classList.add('btn');
-    if(answer.correct) {
-      button.dataset.correct = answer.correct;
-    }
-    button.addEventListener('click', selectAnswer);
+    button.addEventListener('click', () => selectAnswer(answer.text));
     answerButtons.appendChild(button);
   });
 }
@@ -74,22 +64,21 @@ function resetState() {
 }
 
 // Handle answer selection
-function selectAnswer(e) {
-  const selectedButton = e.target;
-  const correct = selectedButton.dataset.correct === 'true';
+function selectAnswer(selectedAnswerText) {
+  const currentQuestion = questions[currentQuestionIndex];
+  
+  // Store user's answer
+  userAnswers.push({
+    questionId: currentQuestion.id,
+    selectedAnswer: selectedAnswerText
+  });
 
-  if(correct) {
-    selectedButton.style.backgroundColor = '#2ecc71'; // green
-    score++;
-  } else {
-    selectedButton.style.backgroundColor = '#e74c3c'; // red
-  }
-
+  // Disable all buttons and show selection
   Array.from(answerButtons.children).forEach(button => {
-    if(button.dataset.correct === 'true') {
-      button.style.backgroundColor = '#2ecc71';
-    }
     button.disabled = true;
+    if (button.innerText === selectedAnswerText) {
+      button.style.backgroundColor = '#3498db'; // blue for selected
+    }
   });
 
   nextButton.style.display = 'block';
@@ -101,16 +90,57 @@ nextButton.addEventListener('click', () => {
   if(currentQuestionIndex < questions.length) {
     showQuestion();
   } else {
-    showScore();
+    submitAnswers();
   }
 });
 
+// Submit answers to backend for validation
+async function submitAnswers() {
+  try {
+    const response = await fetch('http://localhost:3000/api/submit', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ answers: userAnswers })
+    });
+    
+    if (!response.ok) {
+      throw new Error('Failed to submit answers');
+    }
+    
+    const result = await response.json();
+    showScore(result);
+  } catch (error) {
+    console.error('Error submitting answers:', error);
+    questionElement.innerText = 'Error submitting answers. Please try again.';
+  }
+}
+
 // Show final score
-function showScore() {
+function showScore(result) {
   questionElement.innerText = 'Quiz Completed!';
   answerButtons.innerHTML = '';
   nextButton.style.display = 'none';
-  scoreElement.innerText = `Your Score: ${score} / ${questions.length}`;
+  scoreElement.innerText = `Your Score: ${result.score} / ${result.total}`;
+  
+  // Show detailed results
+  if (result.results) {
+    const resultsDiv = document.createElement('div');
+    resultsDiv.style.marginTop = '20px';
+    resultsDiv.innerHTML = '<h3>Results:</h3>';
+    
+    result.results.forEach((result, index) => {
+      const resultItem = document.createElement('p');
+      resultItem.textContent = `Question ${index + 1}: ${result.correct ? '✓ Correct' : '✗ Incorrect'}`;
+      if (!result.correct) {
+        resultItem.textContent += ` (Correct answer: ${result.correctAnswer})`;
+      }
+      resultsDiv.appendChild(resultItem);
+    });
+    
+    answerButtons.appendChild(resultsDiv);
+  }
 }
 
 // Initialize quiz
