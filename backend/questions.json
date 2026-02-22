@@ -3,30 +3,418 @@
     "id": 1,
     "question": "What is the capital of France?",
     "answers": [
-      { "text": "Paris", "correct": true },
-      { "text": "London", "correct": false },
-      { "text": "Rome", "correct": false },
-      { "text": "Berlin", "correct": false }
+      {
+        "text": "Paris",
+        "correct": true
+      },
+      {
+        "text": "London",
+        "correct": false
+      },
+      {
+        "text": "Rome",
+        "correct": false
+      },
+      {
+        "text": "Berlin",
+        "correct": false
+      }
     ]
   },
   {
     "id": 2,
     "question": "Which language runs in a web browser?",
     "answers": [
-      { "text": "JavaScript", "correct": true },
-      { "text": "Python", "correct": false },
-      { "text": "C++", "correct": false },
-      { "text": "Java", "correct": false }
+      {
+        "text": "JavaScript",
+        "correct": true
+      },
+      {
+        "text": "Python",
+        "correct": false
+      },
+      {
+        "text": "C++",
+        "correct": false
+      },
+      {
+        "text": "Java",
+        "correct": false
+      }
     ]
   },
   {
     "id": 3,
     "question": "Who painted the Mona Lisa?",
     "answers": [
-      { "text": "Leonardo da Vinci", "correct": true },
-      { "text": "Vincent Van Gogh", "correct": false },
-      { "text": "Pablo Picasso", "correct": false },
-      { "text": "Claude Monet", "correct": false }
+      {
+        "text": "Leonardo da Vinci",
+        "correct": true
+      },
+      {
+        "text": "Vincent Van Gogh",
+        "correct": false
+      },
+      {
+        "text": "Pablo Picasso",
+        "correct": false
+      },
+      {
+        "text": "Claude Monet",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "question": "What is the largest planet in our solar system?",
+    "answers": [
+      {
+        "text": "Jupiter",
+        "correct": true
+      },
+      {
+        "text": "Saturn",
+        "correct": false
+      },
+      {
+        "text": "Neptune",
+        "correct": false
+      },
+      {
+        "text": "Mars",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "question": "In which year did World War II end?",
+    "answers": [
+      {
+        "text": "1945",
+        "correct": true
+      },
+      {
+        "text": "1944",
+        "correct": false
+      },
+      {
+        "text": "1946",
+        "correct": false
+      },
+      {
+        "text": "1943",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "question": "What is the chemical symbol for gold?",
+    "answers": [
+      {
+        "text": "Au",
+        "correct": true
+      },
+      {
+        "text": "Ag",
+        "correct": false
+      },
+      {
+        "text": "Fe",
+        "correct": false
+      },
+      {
+        "text": "Cu",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "question": "Who wrote 'Romeo and Juliet'?",
+    "answers": [
+      {
+        "text": "William Shakespeare",
+        "correct": true
+      },
+      {
+        "text": "Charles Dickens",
+        "correct": false
+      },
+      {
+        "text": "Jane Austen",
+        "correct": false
+      },
+      {
+        "text": "Mark Twain",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "question": "What is the smallest country in the world?",
+    "answers": [
+      {
+        "text": "Vatican City",
+        "correct": true
+      },
+      {
+        "text": "Monaco",
+        "correct": false
+      },
+      {
+        "text": "San Marino",
+        "correct": false
+      },
+      {
+        "text": "Liechtenstein",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "question": "What is the longest river in the world?",
+    "answers": [
+      {
+        "text": "Nile River",
+        "correct": true
+      },
+      {
+        "text": "Amazon River",
+        "correct": false
+      },
+      {
+        "text": "Mississippi River",
+        "correct": false
+      },
+      {
+        "text": "Yangtze River",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": 11,
+    "question": "Who invented the telephone?",
+    "answers": [
+      {
+        "text": "Alexander Graham Bell",
+        "correct": true
+      },
+      {
+        "text": "Thomas Edison",
+        "correct": false
+      },
+      {
+        "text": "Benjamin Franklin",
+        "correct": false
+      },
+      {
+        "text": "Nikola Tesla",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": 12,
+    "question": "What is the capital of Japan?",
+    "answers": [
+      {
+        "text": "Tokyo",
+        "correct": true
+      },
+      {
+        "text": "Osaka",
+        "correct": false
+      },
+      {
+        "text": "Kyoto",
+        "correct": false
+      },
+      {
+        "text": "Nagoya",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": 13,
+    "question": "Which element has the atomic number 1?",
+    "answers": [
+      {
+        "text": "Hydrogen",
+        "correct": true
+      },
+      {
+        "text": "Helium",
+        "correct": false
+      },
+      {
+        "text": "Carbon",
+        "correct": false
+      },
+      {
+        "text": "Oxygen",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": 14,
+    "question": "In which year did the Titanic sink?",
+    "answers": [
+      {
+        "text": "1912",
+        "correct": true
+      },
+      {
+        "text": "1913",
+        "correct": false
+      },
+      {
+        "text": "1911",
+        "correct": false
+      },
+      {
+        "text": "1914",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": 15,
+    "question": "What is the fastest land animal?",
+    "answers": [
+      {
+        "text": "Cheetah",
+        "correct": true
+      },
+      {
+        "text": "Lion",
+        "correct": false
+      },
+      {
+        "text": "Leopard",
+        "correct": false
+      },
+      {
+        "text": "Gazelle",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": 16,
+    "question": "Who was the first person to walk on the moon?",
+    "answers": [
+      {
+        "text": "Neil Armstrong",
+        "correct": true
+      },
+      {
+        "text": "Buzz Aldrin",
+        "correct": false
+      },
+      {
+        "text": "Yuri Gagarin",
+        "correct": false
+      },
+      {
+        "text": "John Glenn",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": 17,
+    "question": "What is the largest ocean on Earth?",
+    "answers": [
+      {
+        "text": "Pacific Ocean",
+        "correct": true
+      },
+      {
+        "text": "Atlantic Ocean",
+        "correct": false
+      },
+      {
+        "text": "Indian Ocean",
+        "correct": false
+      },
+      {
+        "text": "Arctic Ocean",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": 18,
+    "question": "How many bones are in the adult human body?",
+    "answers": [
+      {
+        "text": "206",
+        "correct": true
+      },
+      {
+        "text": "208",
+        "correct": false
+      },
+      {
+        "text": "204",
+        "correct": false
+      },
+      {
+        "text": "210",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": 19,
+    "question": "What is the capital of Australia?",
+    "answers": [
+      {
+        "text": "Canberra",
+        "correct": true
+      },
+      {
+        "text": "Sydney",
+        "correct": false
+      },
+      {
+        "text": "Melbourne",
+        "correct": false
+      },
+      {
+        "text": "Brisbane",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": 20,
+    "question": "Which planet is known as the Red Planet?",
+    "answers": [
+      {
+        "text": "Mars",
+        "correct": true
+      },
+      {
+        "text": "Venus",
+        "correct": false
+      },
+      {
+        "text": "Jupiter",
+        "correct": false
+      },
+      {
+        "text": "Mercury",
+        "correct": false
+      }
     ]
   }
 ]
